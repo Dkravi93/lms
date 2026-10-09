@@ -27,6 +27,12 @@ npm run dev                          # http://localhost:3000
 
 `npm test` (backend) runs unit tests for the BRE and loan maths. `npm run build` works in both apps.
 
+## Deployment
+
+The GitHub Actions workflow deploys the statically exported frontend to GitHub Pages when changes are pushed to `main`. It also tests and builds the backend, but GitHub Pages cannot run the Express API.
+
+Before the first deployment, set the repository's Pages source to **GitHub Actions** and add the Actions repository variable `NEXT_PUBLIC_API_URL` with the deployed API URL, including `/api` (for example, `https://api.example.com/api`). Host the backend separately with `MONGODB_URI` and `JWT_SECRET` configured, and set `CLIENT_URL` to the Pages site origin so browser requests pass CORS checks.
+
 ## Login credentials (created by `npm run seed`)
 
 | Role         | Email                | Password     | Can access           |

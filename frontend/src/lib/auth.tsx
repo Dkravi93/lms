@@ -3,6 +3,8 @@ import { createContext, useCallback, useContext, useEffect, useState, type React
 import { api, tokenStore } from "./api";
 import type { User } from "./types";
 
+const APP_BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 interface AuthState {
   user: User | null;
   loading: boolean;
@@ -39,7 +41,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     logout: () => {
       tokenStore.clear();
       setUser(null);
-      window.location.assign("/login");
+      window.location.assign(`${APP_BASE_PATH}/login`);
     },
   };
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

@@ -1,6 +1,7 @@
 node_modules/
 dist/
 .next/
+frontend/out/
 .env
 .env.local
 backend/uploads/

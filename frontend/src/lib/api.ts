@@ -1,4 +1,5 @@
 const BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api";
+const APP_BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const TOKEN_KEY = "lms_token";
 
 export const tokenStore = {
@@ -46,7 +47,9 @@ async function request(path: string, { method = "GET", body, form }: Options = {
     const data = await res.json().catch(() => ({}));
     if (res.status === 401 && !path.startsWith("/auth/login") && !path.startsWith("/auth/signup")) {
       tokenStore.clear();
-      if (typeof window !== "undefined" && window.location.pathname !== "/login") window.location.assign("/login");
+      if (typeof window !== "undefined" && window.location.pathname !== `${APP_BASE_PATH}/login`) {
+        window.location.assign(`${APP_BASE_PATH}/login`);
+      }
     }
     throw new ApiError(res.status, data.message ?? "Something went wrong", data.details);
   }
