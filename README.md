@@ -31,7 +31,7 @@ npm run dev                          # http://localhost:3000
 
 The GitHub Actions workflow deploys the statically exported frontend to GitHub Pages when changes are pushed to `main`. It also tests and builds the backend, but GitHub Pages cannot run the Express API.
 
-Before the first deployment, set the repository's Pages source to **GitHub Actions** and add the Actions repository variable `NEXT_PUBLIC_API_URL` with the deployed API URL, including `/api` (for example, `https://api.example.com/api`). Host the backend separately with `MONGODB_URI` and `JWT_SECRET` configured, and set `CLIENT_URL` to the Pages site origin so browser requests pass CORS checks.
+Before the first deployment, set the repository's Pages source to **GitHub Actions**. The workflow uses `https://lms-production-b024.up.railway.app/api` by default; set the Actions repository variable `NEXT_PUBLIC_API_URL` to override it. Host the backend separately with `MONGODB_URI` and a strong `JWT_SECRET` configured. In Railway, set `CLIENT_URL` to `https://dkravi93.github.io` so browser requests from the Pages site pass CORS checks.
 
 ## Login credentials (created by `npm run seed`)
 
